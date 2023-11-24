@@ -40,9 +40,8 @@ resource "azurerm_mssql_firewall_rule" "allow_access_to_azure_services" {
   end_ip_address   = "0.0.0.0"
 }
 
-
-# resource "azurerm_mssql_virtual_network_rule" "default" {
-#   name      = "default-subnet"
-#   server_id = azurerm_mssql_server.default.id
-#   subnet_id = var.default_subnet_id
-# }
+resource "azurerm_mssql_virtual_network_rule" "default" {
+  name      = "default-subnet"
+  server_id = azurerm_mssql_server.default.id
+  subnet_id = var.default_subnet_id
+}

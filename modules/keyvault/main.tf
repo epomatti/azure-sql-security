@@ -14,51 +14,42 @@ resource "azurerm_key_vault_access_policy" "current" {
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = data.azurerm_client_config.current.object_id
 
-  certificate_permissions = [
+  key_permissions = [
+    "List",
     "Create",
     "Delete",
-    "DeleteIssuers",
     "Get",
-    "GetIssuers",
-    "Import",
-    "List",
-    "ListIssuers",
-    "ManageContacts",
-    "ManageIssuers",
-    "SetIssuers",
+    "Purge",
+    "Recover",
     "Update",
+    "GetRotationPolicy",
+    "SetRotationPolicy"
   ]
 }
 
-# resource "azurerm_key_vault_certificate" "example" {
-#   name         = "tde"
-#   key_vault_id = azurerm_key_vault.example.id
+resource "azurerm_key_vault_key" "generated" {
+  name         = "mssql-tde-key"
+  key_vault_id = azurerm_key_vault.default.id
+  key_type     = "RSA"
+  key_size     = 2048
 
-#   certificate {
-#     contents = filebase64("certificate-to-import.pfx")
-#     password = ""
-#   }
-# }
+  key_opts = [
+    "decrypt",
+    "encrypt",
+    "sign",
+    "unwrapKey",
+    "verify",
+    "wrapKey",
+  ]
 
-### Certificate ###
-# resource "tls_private_key" "rsa" {
-#   algorithm = "RSA"
-# }
+  # rotation_policy {
+  #   automatic {
+  #     time_before_expiry = "P30D"
+  #   }
 
-# resource "tls_self_signed_cert" "rsa" {
-#   key_algorithm   = "RSA"
-#   private_key_pem = tls_private_key.rsa.private_key_pem
+  #   expire_after         = "P90D"
+  #   notify_before_expiry = "P29D"
+  # }
 
-#   subject {
-#     common_name  = "example.com"
-#     organization = "ACME Examples, Inc"
-#   }
-
-#   validity_period_hours = 12
-
-#   allowed_uses = [
-#     "key_encipherment",
-#     "digital_signature",
-#     "server_auth",
-#   ]
-# }
+  depends_on = [azurerm_key_vault_access_policy.current]
+}

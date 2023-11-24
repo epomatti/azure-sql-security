@@ -34,3 +34,7 @@ variable "public_network_access_enabled" {
 variable "public_ip_address_to_allow" {
   type = string
 }
+
+variable "default_subnet_id" {
+  type = string
+}
