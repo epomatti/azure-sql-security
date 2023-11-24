@@ -9,6 +9,8 @@ terraform init
 terraform apply -auto-approve
 ```
 
+Following sections will expand on this infrastructure for hands-on practice.
+
 ## Always Encrypted
 
 Secure enclaves [supported][2] are:
