@@ -1,10 +1,13 @@
-# azure-sql-security
+# Azure SQL Security
 
+Create the baseline infrastructure:
 
 ```sh
 terraform init
 terraform apply -auto-approve
 ```
+
+Activate the "Always Encrypted" functionality:
 
 ```sh
 az sql db tde set -g rg-bigbank79 -s sqls-bigbank79 -d sqldb-bigbank79 --status Enabled
