@@ -9,6 +9,10 @@ resource "azurerm_mssql_server" "default" {
   administrator_login_password = var.admin_login_password
 
   public_network_access_enabled = var.public_network_access_enabled
+
+  identity {
+    type = "SystemAssigned"
+  }
 }
 
 resource "azurerm_mssql_database" "default" {

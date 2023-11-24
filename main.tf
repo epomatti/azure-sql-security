@@ -24,6 +24,13 @@ resource "azurerm_log_analytics_workspace" "default" {
   retention_in_days   = 30
 }
 
+module "keyvault" {
+  source   = "./modules/keyvault"
+  workload = local.workload
+  group    = azurerm_resource_group.default.name
+  location = azurerm_resource_group.default.location
+}
+
 module "mssql" {
   source   = "./modules/mssql"
   workload = local.workload
