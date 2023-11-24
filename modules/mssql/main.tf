@@ -7,7 +7,7 @@ resource "azurerm_user_assigned_identity" "mssql" {
 
 resource "azurerm_role_assignment" "key" {
   scope                = var.tde_key_vault_key_resource_id
-  role_definition_name = "Key Vault Crypto User"
+  role_definition_name = "Key Vault Crypto Service Encryption User"
   principal_id         = azurerm_user_assigned_identity.mssql.principal_id
 }
 
@@ -60,7 +60,7 @@ resource "azurerm_mssql_firewall_rule" "local" {
   end_ip_address   = var.public_ip_address_to_allow
 }
 
-# Rule named "AllowAllWindowsAzureIps" with "0.0.0.0" will allow Azure Services to connect.
+# Allow Azure Services to connect.
 resource "azurerm_mssql_firewall_rule" "allow_access_to_azure_services" {
   name             = "AllowAllWindowsAzureIps"
   server_id        = azurerm_mssql_server.default.id

@@ -11,5 +11,9 @@ output "keyvault_key_id" {
 }
 
 output "keyvault_key_resource_id" {
-  value = azurerm_key_vault_key.generated.resource_id
+  value = azurerm_key_vault_key.generated.resource_versionless_id
 }
+
+# output "afsdf" {
+#   value = azurerm_key_vault_key.generated.resource_versionless_id
+# }

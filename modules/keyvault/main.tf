@@ -1,12 +1,21 @@
 data "azurerm_client_config" "current" {}
 
+resource "random_string" "random" {
+  length  = 6
+  special = false
+  upper   = false
+  numeric = true
+}
+
 resource "azurerm_key_vault" "default" {
-  name                     = "kv-${var.workload}789"
-  location                 = var.location
-  resource_group_name      = var.group
-  tenant_id                = data.azurerm_client_config.current.tenant_id
-  purge_protection_enabled = false
-  sku_name                 = "standard"
+  name                = "kv-${var.workload}${random_string.random.result}"
+  location            = var.location
+  resource_group_name = var.group
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  sku_name            = "standard"
+
+  purge_protection_enabled   = true
+  soft_delete_retention_days = 7
 
   enable_rbac_authorization = true
 }
