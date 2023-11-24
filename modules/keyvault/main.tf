@@ -52,3 +52,39 @@ resource "azurerm_key_vault_key" "generated" {
 
   depends_on = [azurerm_role_assignment.current]
 }
+
+resource "azurerm_key_vault_key" "column_master_key" {
+  name         = "mssql-column-master-key"
+  key_vault_id = azurerm_key_vault.default.id
+  key_type     = "RSA"
+  key_size     = 2048
+
+  key_opts = [
+    "decrypt",
+    "encrypt",
+    "sign",
+    "unwrapKey",
+    "verify",
+    "wrapKey",
+  ]
+
+  depends_on = [azurerm_role_assignment.current]
+}
+
+resource "azurerm_key_vault_key" "column_encrypion_key" {
+  name         = "mssql-column-encryption-key"
+  key_vault_id = azurerm_key_vault.default.id
+  key_type     = "RSA"
+  key_size     = 2048
+
+  key_opts = [
+    "decrypt",
+    "encrypt",
+    "sign",
+    "unwrapKey",
+    "verify",
+    "wrapKey",
+  ]
+
+  depends_on = [azurerm_role_assignment.current]
+}

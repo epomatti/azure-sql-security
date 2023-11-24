@@ -3,6 +3,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "log" {
   log_monitoring_enabled = true
 }
 
+# TODO: Depends on "/databases/master"
 resource "azurerm_monitor_diagnostic_setting" "audit" {
   name                       = "mssql-audit"
   target_resource_id         = "${var.mssql_server_id}/databases/master"

@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "3.81.0"
     }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "2.46.0"
+    }
   }
 }
 
@@ -48,7 +52,7 @@ module "mssql" {
   sku                           = var.mssql_sku
   max_size_gb                   = var.mssql_max_size_gb
   public_network_access_enabled = var.mssql_public_network_access_enabled
-  admin_admin                   = var.mssql_admin_login
+  admin_login                   = var.mssql_admin_login
   admin_login_password          = var.mssql_admin_login_password
   default_subnet_id             = module.vnet.default_subnet_id
 

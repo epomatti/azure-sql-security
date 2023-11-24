@@ -18,7 +18,7 @@ variable "max_size_gb" {
   type = number
 }
 
-variable "admin_admin" {
+variable "admin_login" {
   type = string
 }
 

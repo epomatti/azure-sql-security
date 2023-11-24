@@ -14,6 +14,10 @@ resource "azurerm_role_assignment" "key" {
 ### SQL Server ###
 data "azurerm_client_config" "current" {}
 
+data "azuread_user" "current" {
+  object_id = data.azurerm_client_config.current.object_id
+}
+
 resource "azurerm_mssql_server" "default" {
   name                = "sqls-${var.workload}"
   resource_group_name = var.group
@@ -21,18 +25,20 @@ resource "azurerm_mssql_server" "default" {
   version             = "12.0"
   minimum_tls_version = "1.2"
 
-  administrator_login          = var.admin_admin
-  administrator_login_password = var.admin_login_password
-  # azuread_administrator {
-  #   login_username = data.azurerm_client_config.current.
-  #   object_id = data.azurerm_client_config.current.object_id
-  #   tenant_id = data.azurerm_client_config.current.tenant_id
-  # }
-
   public_network_access_enabled                = var.public_network_access_enabled
   transparent_data_encryption_key_vault_key_id = var.tde_key_vault_key_id
 
-  # Identity
+  # Administrator Login
+  administrator_login          = var.admin_login
+  administrator_login_password = var.admin_login_password
+
+  azuread_administrator {
+    login_username = data.azuread_user.current.user_principal_name
+    object_id      = data.azurerm_client_config.current.object_id
+    tenant_id      = data.azurerm_client_config.current.tenant_id
+  }
+
+  # Managed Identity
   primary_user_assigned_identity_id = azurerm_user_assigned_identity.mssql.id
 
   identity {
