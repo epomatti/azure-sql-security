@@ -7,24 +7,14 @@ resource "azurerm_key_vault" "default" {
   tenant_id                = data.azurerm_client_config.current.tenant_id
   purge_protection_enabled = false
   sku_name                 = "standard"
+
+  enable_rbac_authorization = true
 }
 
-resource "azurerm_key_vault_access_policy" "current" {
-  key_vault_id = azurerm_key_vault.default.id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = data.azurerm_client_config.current.object_id
-
-  key_permissions = [
-    "List",
-    "Create",
-    "Delete",
-    "Get",
-    "Purge",
-    "Recover",
-    "Update",
-    "GetRotationPolicy",
-    "SetRotationPolicy"
-  ]
+resource "azurerm_role_assignment" "current" {
+  scope                = azurerm_key_vault.default.id
+  role_definition_name = "Key Vault Administrator"
+  principal_id         = data.azurerm_client_config.current.object_id
 }
 
 resource "azurerm_key_vault_key" "generated" {
@@ -47,9 +37,8 @@ resource "azurerm_key_vault_key" "generated" {
   #     time_before_expiry = "P30D"
   #   }
 
-  #   expire_after         = "P90D"
-  #   notify_before_expiry = "P29D"
+  #   expire_after = "P90D"
   # }
 
-  depends_on = [azurerm_key_vault_access_policy.current]
+  depends_on = [azurerm_role_assignment.current]
 }

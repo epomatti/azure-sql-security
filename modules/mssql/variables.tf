@@ -38,3 +38,7 @@ variable "public_ip_address_to_allow" {
 variable "default_subnet_id" {
   type = string
 }
+
+variable "tde_key_vault_key_id" {
+  type = string
+}

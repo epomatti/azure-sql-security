@@ -8,7 +8,8 @@ resource "azurerm_mssql_server" "default" {
   administrator_login          = var.admin_admin
   administrator_login_password = var.admin_login_password
 
-  public_network_access_enabled = var.public_network_access_enabled
+  public_network_access_enabled                = var.public_network_access_enabled
+  transparent_data_encryption_key_vault_key_id = var.tde_key_vault_key_id
 
   identity {
     type = "SystemAssigned"
