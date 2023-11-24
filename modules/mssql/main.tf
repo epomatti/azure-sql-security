@@ -28,6 +28,15 @@ resource "azurerm_mssql_firewall_rule" "local" {
   end_ip_address   = var.public_ip_address_to_allow
 }
 
+# Rule named "AllowAllWindowsAzureIps" with "0.0.0.0" will allow Azure Services to connect.
+resource "azurerm_mssql_firewall_rule" "allow_access_to_azure_services" {
+  name             = "AllowAllWindowsAzureIps"
+  server_id        = azurerm_mssql_server.default.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+}
+
+
 # resource "azurerm_mssql_virtual_network_rule" "default" {
 #   name      = "default-subnet"
 #   server_id = azurerm_mssql_server.default.id
