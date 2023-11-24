@@ -51,7 +51,9 @@ module "mssql" {
   admin_admin                   = var.mssql_admin_login
   admin_login_password          = var.mssql_admin_login_password
   default_subnet_id             = module.vnet.default_subnet_id
+
   tde_key_vault_key_id          = module.keyvault.keyvault_key_id
+  tde_key_vault_key_resource_id = module.keyvault.keyvault_key_resource_id
 }
 
 module "audit" {

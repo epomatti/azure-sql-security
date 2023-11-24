@@ -1,3 +1,17 @@
+# Using User-Assigned to make it all automated for TDE
+resource "azurerm_user_assigned_identity" "mssql" {
+  name                = "sqls-${var.workload}"
+  resource_group_name = var.group
+  location            = var.location
+}
+
+resource "azurerm_role_assignment" "key" {
+  scope                = var.tde_key_vault_key_resource_id
+  role_definition_name = "Key Vault Crypto User"
+  principal_id         = azurerm_user_assigned_identity.mssql.principal_id
+}
+
+### SQL Server ###
 resource "azurerm_mssql_server" "default" {
   name                = "sqls-${var.workload}"
   resource_group_name = var.group
@@ -11,9 +25,14 @@ resource "azurerm_mssql_server" "default" {
   public_network_access_enabled                = var.public_network_access_enabled
   transparent_data_encryption_key_vault_key_id = var.tde_key_vault_key_id
 
+  primary_user_assigned_identity_id = azurerm_user_assigned_identity.mssql.id
+
   identity {
-    type = "SystemAssigned"
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.mssql.id]
   }
+
+  depends_on = [azurerm_role_assignment.key]
 }
 
 resource "azurerm_mssql_database" "default" {

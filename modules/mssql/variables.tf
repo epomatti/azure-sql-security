@@ -42,3 +42,7 @@ variable "default_subnet_id" {
 variable "tde_key_vault_key_id" {
   type = string
 }
+
+variable "tde_key_vault_key_resource_id" {
+  type = string
+}
