@@ -25,4 +25,5 @@ FAILED_DATABASE_AUTHENTICATION_GROUP
 Ledger
 TDE
 Always
-CMK
+
+CMK - Requires KeyVault purge protection
