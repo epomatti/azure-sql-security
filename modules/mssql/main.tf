@@ -7,6 +7,7 @@ resource "azurerm_user_assigned_identity" "mssql" {
 
 resource "azurerm_role_assignment" "key" {
   scope                = var.tde_key_vault_key_resource_id
+  # Provides the required permissions for TDE which are Get, Wrap Key, Unwrap
   role_definition_name = "Key Vault Crypto Service Encryption User"
   principal_id         = azurerm_user_assigned_identity.mssql.principal_id
 }
