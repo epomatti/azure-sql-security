@@ -118,8 +118,15 @@ az sql db classification update -g rg-bigbank79 -s sqls-bigbank79 -n sqldb-bigba
 
 <img src=".assets/mssql-classification.png" />
 
+## Dynamic Data Masking
+
+Dynamic Data Masking can be applied from within or outside the database.
+
+Check the [documentation][6] for details.
+
 [1]: https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-server-security-best-practices?view=sql-server-ver16
 [2]: https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver16#supported-enclave-technologies
 [3]: https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-enclaves-getting-started-vbs?view=azuresql&tabs=ssmsrequirements%2Cazure-cli
 [4]: https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver16
 [5]: https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
+[6]: https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver16
