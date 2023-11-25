@@ -82,13 +82,16 @@ This database will be integrated with Entra ID.
 
 Documentation for [audit action groups & actions][5].
 
-Default audit groups:
+Default audit settings:
 
-```
-BATCH_COMPLETED_GROUP
-SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
-FAILED_DATABASE_AUTHENTICATION_GROUP
-```
+> The default auditing settings include the following set of action groups, which will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
+> 
+> 
+> BATCH_COMPLETED_GROUP
+> 
+> SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
+> 
+> FAILED_DATABASE_AUTHENTICATION_GROUP
 
 ## Ledger
 
