@@ -4,6 +4,8 @@ Implementation of advanced SQL Server security features following [best practice
 
 Set up the parameters:
 
+> Edit the template and add your IP address
+
 ```sh
 cp config/sample.tfvars .auto.tfvars
 ```
@@ -99,6 +101,22 @@ Ledger is an option to verify data integrity.
 
 This is not path for AZ-500 but will keep it here for reference.
 
+## Data Classification
+
+The database will be created using `SQL Information Protection` policy.
+
+> It is possible to use `Microsoft Information Protection` which will fetch sensitivity labels defined in Microsoft 365.
+
+After creating the schema, classify the data:
+
+```sh
+az sql db classification update -g rg-bigbank79 -s sqls-bigbank79 -n sqldb-bigbank79 --column FirstName --schema HR --table Employees --information-type Name --label General
+az sql db classification update -g rg-bigbank79 -s sqls-bigbank79 -n sqldb-bigbank79 --column LastName --schema HR --table Employees --information-type Name --label General
+az sql db classification update -g rg-bigbank79 -s sqls-bigbank79 -n sqldb-bigbank79 --column SSN --schema HR --table Employees --information-type SSN --label Confidential
+az sql db classification update -g rg-bigbank79 -s sqls-bigbank79 -n sqldb-bigbank79 --column Salary --schema HR --table Employees --information-type Financial --label "Highly Confidential"
+```
+
+<img src=".assets/mssql-classification.png" />
 
 [1]: https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-server-security-best-practices?view=sql-server-ver16
 [2]: https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver16#supported-enclave-technologies
