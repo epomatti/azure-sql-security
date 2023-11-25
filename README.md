@@ -74,6 +74,10 @@ Querying results from a disabled session will now show encrypted values:
 
 [Row-Level Security][4] is a feature within SQL Server, but has a different mechanism than Column-Level Encryption.
 
+## Entra ID integration
+
+This database will be integrated with Entra ID.
+
 ## Auditing
 
 Documentation for [audit action groups & actions][5].
