@@ -46,3 +46,7 @@ variable "tde_key_vault_key_id" {
 variable "tde_key_vault_key_resource_id" {
   type = string
 }
+
+variable "log_analytic_workspace_id" {
+  type = string
+}

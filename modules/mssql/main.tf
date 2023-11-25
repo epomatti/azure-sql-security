@@ -79,3 +79,41 @@ resource "azurerm_mssql_virtual_network_rule" "default" {
   server_id = azurerm_mssql_server.default.id
   subnet_id = var.default_subnet_id
 }
+
+
+### Auditing ###
+resource "azurerm_mssql_server_extended_auditing_policy" "log" {
+  server_id              = azurerm_mssql_server.default.id
+  log_monitoring_enabled = true
+
+  # Don't know if this is the right dependency
+  depends_on = [azurerm_mssql_database.default]
+}
+
+resource "azurerm_monitor_diagnostic_setting" "audit" {
+  name                       = "mssql-audit"
+  target_resource_id         = "${azurerm_mssql_server.default.id}/databases/master"
+  log_analytics_workspace_id = var.log_analytic_workspace_id
+
+  enabled_log {
+    category = "SQLSecurityAuditEvents"
+  }
+
+  metric {
+    category = "Basic"
+    enabled  = true
+  }
+
+  metric {
+    category = "InstanceAndAppAdvanced"
+    enabled  = true
+  }
+
+  metric {
+    category = "WorkloadManagement"
+    enabled  = true
+  }
+
+  # Don't know if this is the right dependency
+  depends_on = [azurerm_mssql_database.default]
+}

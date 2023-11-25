@@ -42,13 +42,13 @@ resource "azurerm_key_vault_key" "generated" {
     "wrapKey",
   ]
 
-  # rotation_policy {
-  #   automatic {
-  #     time_before_expiry = "P30D"
-  #   }
-
-  #   expire_after = "P90D"
-  # }
+  rotation_policy {
+    automatic {
+      time_before_expiry = "P30D"
+    }
+    notify_before_expiry = "P29D"
+    expire_after         = "P90D"
+  }
 
   depends_on = [azurerm_role_assignment.current]
 }
