@@ -25,6 +25,8 @@ TDE is enabled on all new databases.
 
 This sample database is configured with CMK, and for for this purpose enabling purge protection for the Key Vault is required.
 
+It is important to notice that databases will default to the Server CMK, but it is possible to use a database-specific CMK.
+
 ## Always Encrypted
 
 Column-Level Security via column encryption.
