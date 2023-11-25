@@ -2,6 +2,12 @@
 
 Implementation of advanced SQL Server security features following [best practices][1].
 
+Set up the parameters:
+
+```sh
+cp config/sample.tfvars .auto.tfvars
+```
+
 Create the baseline infrastructure:
 
 ```sh
