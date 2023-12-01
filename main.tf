@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.81.0"
+      version = "3.83.0"
     }
     azuread = {
       source  = "hashicorp/azuread"
@@ -40,6 +40,12 @@ module "keyvault" {
   workload = local.workload
   group    = azurerm_resource_group.default.name
   location = azurerm_resource_group.default.location
+}
+
+module "entraid" {
+  source                     = "./modules/entraid"
+  entraid_tenant_domain      = var.entraid_tenant_domain
+  sqldeveloper_user_password = var.entraid_sqldeveloper_user_password
 }
 
 module "mssql" {

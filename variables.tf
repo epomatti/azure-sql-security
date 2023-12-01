@@ -26,3 +26,13 @@ variable "mssql_admin_login" {
 variable "mssql_admin_login_password" {
   type = string
 }
+
+### Entra ID ###
+variable "entraid_tenant_domain" {
+  type = string
+}
+
+variable "entraid_sqldeveloper_user_password" {
+  type      = string
+  sensitive = true
+}

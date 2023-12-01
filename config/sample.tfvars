@@ -6,3 +6,7 @@ mssql_sku                           = "Basic"
 mssql_max_size_gb                   = 2
 mssql_admin_login                   = "sqladmin"
 mssql_admin_login_password          = "P4ssw0rd!2023"
+
+# Entra ID for the database user
+entraid_tenant_domain              = "<yourdomain>.onmicrosoft.com"
+entraid_sqldeveloper_user_password = "P4ssw0rd!2023"
