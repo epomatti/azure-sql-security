@@ -80,7 +80,25 @@ Querying results from a disabled session will now show encrypted values:
 
 ## Entra ID integration
 
-This database will be integrated with Entra ID.
+This database will be integrated with Entra ID. The logged user will be the Entra ID Administrator.
+
+> For Azure SQL Databases, mapping the Entra ID user to the Server is not supported, only directly to the database. But it is supported for Azure SQL Managed Instances.
+
+> "Contained" database users are standalone only for the databases, but can reference External Providers such as Entra ID.
+
+And additional user `sqldeveloper` will be create on Entra ID.
+
+For Azure SQL Databases, we'll create a contained database user that is mapped to an Entra ID-based login:
+
+```sql
+--Create the contained DB User authenticated by AAD
+CREATE USER [sqldeveloper@<TENANT>.onmicrosoft.com] FROM EXTERNAL PROVIDER;
+
+--Add some permissions to the user
+ALTER ROLE "db_owner" ADD MEMBER "sqldeveloper@<TENANT>.onmicrosoft.com";
+```
+
+Connect with the Entra ID user specifying the database.
 
 ## Auditing
 
