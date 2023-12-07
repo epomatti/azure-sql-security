@@ -150,7 +150,7 @@ To create an Elastic Pool, set:
 mssql_create_elastic_pool = true
 ```
 
-Enable `Always Encrypted manually` if required.
+Enable `Always Encrypted` manually if required.
 
 
 [1]: https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-server-security-best-practices?view=sql-server-ver16
