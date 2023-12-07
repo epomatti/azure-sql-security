@@ -50,3 +50,7 @@ variable "tde_key_vault_key_resource_id" {
 variable "log_analytic_workspace_id" {
   type = string
 }
+
+variable "elastic_pool_enabled" {
+  type = bool
+}

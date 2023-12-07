@@ -66,4 +66,6 @@ module "mssql" {
   tde_key_vault_key_resource_id = module.keyvault.keyvault_key_resource_id
 
   log_analytic_workspace_id = azurerm_log_analytics_workspace.default.id
+
+  elastic_pool_enabled = var.mssql_create_elastic_pool
 }

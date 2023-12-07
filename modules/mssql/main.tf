@@ -6,7 +6,7 @@ resource "azurerm_user_assigned_identity" "mssql" {
 }
 
 resource "azurerm_role_assignment" "key" {
-  scope                = var.tde_key_vault_key_resource_id
+  scope = var.tde_key_vault_key_resource_id
   # Provides the required permissions for TDE which are Get, Wrap Key, Unwrap
   role_definition_name = "Key Vault Crypto Service Encryption User"
   principal_id         = azurerm_user_assigned_identity.mssql.principal_id
@@ -117,4 +117,33 @@ resource "azurerm_monitor_diagnostic_setting" "audit" {
 
   # Don't know if this is the right dependency
   depends_on = [azurerm_mssql_database.default]
+}
+
+
+### Elastic Pool ###
+
+resource "azurerm_mssql_elasticpool" "default" {
+  count               = var.elastic_pool_enabled ? 1 : 0
+  name                = "sqlep-${var.workload}-default"
+  resource_group_name = var.group
+  location            = var.location
+  server_name         = azurerm_mssql_server.default.name
+  license_type        = "LicenseIncluded"
+  zone_redundant      = false
+
+  maintenance_configuration_name = "SQL_Default"
+
+  max_size_gb = 100
+
+  sku {
+    name     = "StandardPool"
+    tier     = "Standard"
+    family   = null
+    capacity = 50
+  }
+
+  per_database_settings {
+    min_capacity = 0
+    max_capacity = 50
+  }
 }

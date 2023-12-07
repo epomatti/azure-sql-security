@@ -27,6 +27,10 @@ variable "mssql_admin_login_password" {
   type = string
 }
 
+variable "mssql_create_elastic_pool" {
+  type = bool
+}
+
 ### Entra ID ###
 variable "entraid_tenant_domain" {
   type = string

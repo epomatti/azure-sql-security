@@ -142,6 +142,17 @@ Dynamic Data Masking can be applied from within or outside the database.
 
 Check the [documentation][6] for details.
 
+## Elastic Pools
+
+To create an Elastic Pool, set:
+
+```terraform
+mssql_create_elastic_pool = true
+```
+
+Enable `Always Encrypted manually` if required.
+
+
 [1]: https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-server-security-best-practices?view=sql-server-ver16
 [2]: https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver16#supported-enclave-technologies
 [3]: https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-enclaves-getting-started-vbs?view=azuresql&tabs=ssmsrequirements%2Cazure-cli
