@@ -125,7 +125,7 @@ This is not path for AZ-500 but will keep it here for reference.
 
 The database will be created using `SQL Information Protection` policy.
 
-> It is possible to use `Microsoft Information Protection` which will fetch sensitivity labels defined in Microsoft 365.
+> It is possible to use `Microsoft Information Protection` to fetch sensitivity labels defined in Microsoft 365.
 
 After creating the schema, classify the data:
 
