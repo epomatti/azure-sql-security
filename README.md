@@ -150,7 +150,9 @@ To create an Elastic Pool, set:
 mssql_create_elastic_pool = true
 ```
 
-Enable `Always Encrypted` manually if required.
+Add the database to the elastic pool using the portal. The SKU of the database will be set as `ElasticPool`.
+
+To enable `Always Encrypted` for the elastic pool, do it so manually.
 
 
 [1]: https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-server-security-best-practices?view=sql-server-ver16
