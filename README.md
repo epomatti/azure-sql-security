@@ -53,6 +53,8 @@ Create some data running the following files:
 
 Now create the Always Encrypted keys:
 
+> Database Engine is [not involved][7] since the data has to be protected, so T-SQL cannot be used.
+
 1. CMK1 (Column master key)
 2. CEK1 (Column encryption key)
 
@@ -161,3 +163,4 @@ To enable `Always Encrypted` for the elastic pool, do it so manually.
 [4]: https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver16
 [5]: https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 [6]: https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver16
+[7]: https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver15
