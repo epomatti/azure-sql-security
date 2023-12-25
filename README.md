@@ -21,7 +21,7 @@ Following sections will expand on this infrastructure for hands-on practice.
 
 ## Transparent Data Encryption (TDE)
 
-TDE is enabled on all new databases.
+TDE is enabled on all new databases for Encryption-at-rest.
 
 This sample database is configured with CMK, and for for this purpose enabling purge protection for the Key Vault is required.
 
