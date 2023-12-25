@@ -76,6 +76,19 @@ Querying results from a disabled session will now show encrypted values:
 
 <img src=".assets/mssql-alwaysencrypted-results.png" />
 
+## Always Encrypted with T-SQL
+
+Here is a different [example][8] using T-SQL.
+
+```sql
+USE database;
+GO
+
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'P@ssw0rd.123';
+
+CREATE CERTIFICATE Certificate_key WITH SUBJECT = 'Protected my data';
+```
+
 ## Row-Level Security
 
 [Row-Level Security][4] is a feature within SQL Server, but has a different mechanism than Column-Level Encryption.
@@ -164,3 +177,4 @@ To enable `Always Encrypted` for the elastic pool, do it so manually.
 [5]: https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 [6]: https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver16
 [7]: https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver15
+[8]: https://www.sqlshack.com/an-overview-of-the-column-level-sql-server-encryption/?_ga=2.188209896.1510144942.1703251968-967359652.1700361706
