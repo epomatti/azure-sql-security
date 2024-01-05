@@ -97,11 +97,11 @@ CREATE CERTIFICATE Certificate_key WITH SUBJECT = 'Protected my data';
 
 This database will be integrated with Entra ID. The logged user will be the Entra ID Administrator.
 
-> For Azure SQL Databases, mapping the Entra ID user to the Server is not supported, only directly to the database. But it is supported for Azure SQL Managed Instances.
-
+> 💡 For Azure SQL Databases, mapping the Entra ID user to the Server is not supported, only directly to the database. But it is supported for Azure SQL Managed Instances.
+>
 > "Contained" database users are standalone only for the databases, but can reference External Providers such as Entra ID.
 
-And additional user `sqldeveloper` will be create on Entra ID.
+Terraform will have created an additional user `sqldeveloper` on Entra ID to use in this example.
 
 For Azure SQL Databases, we'll create a contained database user that is mapped to an Entra ID-based login:
 
