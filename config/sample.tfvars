@@ -1,4 +1,5 @@
 public_ip_address_to_allow = ""
+subscription_id            = ""
 
 # Azure SQL Server
 mssql_public_network_access_enabled = true

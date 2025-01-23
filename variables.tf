@@ -3,6 +3,10 @@ variable "location" {
   default = "eastus2"
 }
 
+variable "subscription_id" {
+  type = string
+}
+
 variable "public_ip_address_to_allow" {
   type = string
 }
